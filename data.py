@@ -31,7 +31,7 @@ class data(object):
         # reddit
         self.subreddit = self.reddit.subreddit('nba')
         self.pr_redditor = self.reddit.redditor('powerrankingsnba')
-        self.nba_index_redditor = self.reddit.redditor('NBA_MOD')
+        self.nba_index_redditor = self.reddit.redditor(config.username)
         self.post_subreddit = self.reddit.subreddit('nba')
         self.thread_link = 'https://reddit.com/r/nba/comments/'
         self.index_thread_title = 'r/NBA Game Threads Index + Daily Discussion '
