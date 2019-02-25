@@ -114,7 +114,11 @@ class nbaMod(object):
         thread_format = self.reddit.submission(id = '9p8t8a').selftext
         news_markdown = markdown.generate_news_markdown(self.data.news()).strip()
         games_markdown = markdown.generate_games_markdown(self.data.games(date, 'full'), 'index').strip()
-        previous_markdown = markdown.generate_previous_markdown(self.data.previous()).strip()
+        yesterday = (datetime.today() - timedelta(1)).strftime("%Y%m%d")
+        #print(date)
+        previous_markdown = markdown.generate_games_markdown(self.data.games(yesterday, 'full'), 'index').strip()
+        #previous_markdown = markdown.generate_previous_markdown(self.data.previous()).strip()
+        #previous_markdown = ''
         highlights_markdown = markdown.generate_highlights_markdown(self.data.highlights()).strip()
         community_markdown = self.data.rankings()
         index_markdown = markdown.generate_index_markdown(self.data.load_threads('index')).strip()
