@@ -82,7 +82,7 @@ class markdown:
         highlights_markdown = ''
         for i, highlights in enumerate(highlights):
             highlights_markdown += '0. [' + highlights['title'] + '](' + highlights['url'] + ') | [(Comments)](https://reddit.com/r/nba/comments/' + highlights['id'] + ')\n\n'
-            if i == 9:
+            if i == 4:
                 break
                 
         return highlights_markdown
@@ -110,7 +110,7 @@ class markdown:
 
         return next_day_fmt
 
-    def generate_index_thread_markdown(thread_format, news, games, previous, highlights, community, index):
+    """def generate_index_thread_markdown(thread_format, news, games, previous, highlights, community, index):
         logger.info('Formatting index thread ... ')
         
         news_start_string = '$news\n\n'
@@ -150,5 +150,45 @@ class markdown:
               + community + end_string \
               + before_index_start \
               + index
+
+        return index_thread_fmt"""
+
+    def generate_index_thread_markdown(thread_format, games, previous, highlights):
+        logger.info('Formatting index thread ... ')
+        
+        news_start_string = '$news\n\n'
+        games_start_string = '$games\n\n'
+        previous_start_string = '$previous\n\n'
+        highlights_start_string = '$highlights\n\n'
+        community_start_string = '$community\n\n'
+        index_start_string = '$index'
+        end_string = '\n\n'
+        
+        before_news_start = thread_format.split(news_start_string, 1)[0]
+        after_news_start = thread_format.split(news_start_string, 1)[1]
+
+        before_games_start = after_news_start.split(games_start_string, 1)[0]
+        after_games_start = after_news_start.split(games_start_string, 1)[1]
+
+        before_previous_start = after_games_start.split(previous_start_string, 1)[0]
+        after_previous_start = after_games_start.split(previous_start_string, 1)[1]
+
+        before_highlights_start = after_previous_start.split(highlights_start_string, 1)[0]
+        after_highlights_start = after_previous_start.split(highlights_start_string, 1)[1]
+
+        before_community_start = after_highlights_start.split(community_start_string, 1)[0]
+        after_community_start = after_highlights_start.split(community_start_string, 1)[1]
+
+        before_index_start = after_community_start.split(index_start_string, 1)[0]
+
+        rules = "Daily Discussion Thread : [Rules](https://www.reddit.com/r/nba/wiki/rules#wiki_daily_discussion_thread)"
+
+        index_thread_fmt = before_games_start \
+              + games + end_string \
+              + before_previous_start \
+              + previous + end_string \
+              + before_highlights_start \
+              + highlights + end_string \
+              + rules + end_string
 
         return index_thread_fmt

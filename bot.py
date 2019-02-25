@@ -47,7 +47,7 @@ class nbaMod(object):
     def load_settings(self):
         # reddit
         self.subreddit = self.reddit.subreddit('nba')
-        self.post_subreddit = self.reddit.subreddit('nba')
+        self.post_subreddit = self.reddit.subreddit('NBA_Mods')
         self.bot_timezone = pytz.timezone('US/Central')
         self.index_thread_title = 'r/NBA Game Threads Index + Daily Discussion '
 
@@ -112,24 +112,27 @@ class nbaMod(object):
 
     def format_index_thread(self, date):
         thread_format = self.reddit.submission(id = '9p8t8a').selftext
-        news_markdown = markdown.generate_news_markdown(self.data.news()).strip()
+        #news_markdown = markdown.generate_news_markdown(self.data.news()).strip()
         games_markdown = markdown.generate_games_markdown(self.data.games(date, 'full'), 'index').strip()
         yesterday = (datetime.today() - timedelta(1)).strftime("%Y%m%d")
-        #print(date)
         previous_markdown = markdown.generate_games_markdown(self.data.games(yesterday, 'full'), 'index').strip()
         #previous_markdown = markdown.generate_previous_markdown(self.data.previous()).strip()
-        #previous_markdown = ''
         highlights_markdown = markdown.generate_highlights_markdown(self.data.highlights()).strip()
-        community_markdown = self.data.rankings()
-        index_markdown = markdown.generate_index_markdown(self.data.load_threads('index')).strip()
+        #community_markdown = self.data.rankings()
+        #index_markdown = markdown.generate_index_markdown(self.data.load_threads('index')).strip()
         
-        thread_markdown = markdown.generate_index_thread_markdown(thread_format, \
+        """thread_markdown = markdown.generate_index_thread_markdown(thread_format, \
                                                             news_markdown, \
                                                             games_markdown, \
                                                             previous_markdown, \
                                                             highlights_markdown, \
                                                             community_markdown, \
-                                                            index_markdown)
+                                                            index_markdown)"""
+
+        thread_markdown = markdown.generate_index_thread_markdown(thread_format, \
+                                                            games_markdown, \
+                                                            previous_markdown, \
+                                                            highlights_markdown)
 
         return thread_markdown
     
