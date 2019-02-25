@@ -183,10 +183,12 @@ def runMod():
         yesterdays_date = datetime.now() - timedelta(days=1)
         yesterdays_date_formatted = yesterdays_date.strftime('%Y%m%d')
         try:
+            print(bot.need_index_thread(now.strftime('%Y%m%d')))
+            print(now.hour)
             if bot.need_index_thread(now.strftime('%Y%m%d')) and now.hour >= 9:
                 print('-' * 10 + str(now.hour) + '-' * 10)
                 bot.submit_index_thread()
-            elif now.hour <= 2 or now.hour >= 9:
+            elif now.hour < 0 or now.hour >= 9:
                 print('-' * 10 + str(now.hour) + '-' * 10)
                 bot.update_index_thread()
                 
