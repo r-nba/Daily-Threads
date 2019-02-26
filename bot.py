@@ -77,6 +77,7 @@ class nbaMod(object):
     def need_index_thread(self, date):
         thread_hasnt_been_made = True
         for i, thread in enumerate(self.data.load_threads('index')):
+            print(thread['thread_date'])
             if thread['thread_date'] == date:
                 thread_hasnt_been_made = False
 
@@ -188,7 +189,7 @@ def runMod():
             if bot.need_index_thread(now.strftime('%Y%m%d')) and now.hour >= 8:
                 print('-' * 10 + str(now.hour) + '-' * 10)
                 bot.submit_index_thread()
-            elif now.hour < 0 or now.hour >= 9:
+            elif now.hour < 23 and now.hour >= 9:
                 print('-' * 10 + str(now.hour) + '-' * 10)
                 bot.update_index_thread()
                 

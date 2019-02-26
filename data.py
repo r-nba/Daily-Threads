@@ -34,7 +34,7 @@ class data(object):
         self.nba_index_redditor = self.reddit.redditor(config.username)
         self.post_subreddit = self.reddit.subreddit('nba')
         self.thread_link = 'https://reddit.com/r/nba/comments/'
-        self.index_thread_title = 'r/NBA Game Threads Index + Daily Discussion '
+        self.index_thread_title = 'Game Threads Index + Daily Discussion '
 
         # load team data
         self.load_teams()
