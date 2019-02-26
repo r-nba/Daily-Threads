@@ -47,9 +47,9 @@ class nbaMod(object):
     def load_settings(self):
         # reddit
         self.subreddit = self.reddit.subreddit('nba')
-        self.post_subreddit = self.reddit.subreddit('NBA_Mods')
+        self.post_subreddit = self.reddit.subreddit('nba')
         self.bot_timezone = pytz.timezone('US/Central')
-        self.index_thread_title = 'r/NBA Game Threads Index + Daily Discussion '
+        self.index_thread_title = 'Game Threads Index + Daily Discussion '
 
         # load team data
         self.load_teams()
@@ -185,7 +185,7 @@ def runMod():
         try:
             print(bot.need_index_thread(now.strftime('%Y%m%d')))
             print(now.hour)
-            if bot.need_index_thread(now.strftime('%Y%m%d')) and now.hour >= 9:
+            if bot.need_index_thread(now.strftime('%Y%m%d')) and now.hour >= 8:
                 print('-' * 10 + str(now.hour) + '-' * 10)
                 bot.submit_index_thread()
             elif now.hour < 0 or now.hour >= 9:
